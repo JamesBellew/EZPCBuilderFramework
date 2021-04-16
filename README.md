@@ -17,3 +17,12 @@ Admins will have access to create there own pre uild computers
 ### ASP.Net Core MVC Framework
 ### Bootstrap
 ### AJAX
+
+# Deployment
+## Azure Cloud Service
+We will deploy our application via the Microsoft Azure Cloud Service
+
+# Team Organisation
+## Trello
+Both members used www.trello.com to keep track of the tasks needed to cpmplete the application
+
