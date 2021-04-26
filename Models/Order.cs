@@ -8,7 +8,7 @@ namespace EZPCBuilder.Models
     public class Order
     {
         private String orderId;
-        private User user;
+        // private User user;
         private int userId;
         private String userName;
         private Address billingAddress;

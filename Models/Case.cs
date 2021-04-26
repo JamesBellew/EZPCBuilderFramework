@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -10,26 +12,25 @@ namespace EZPCBuilder.Models
     public class Case
     {
         [Key]
-        private int case_id;
+        private int ID;
 
         [Column(TypeName = "nvarchar(64)")]
-        private String case_name { get; set; }
+        private String Name { get; set; }
 
         [Column(TypeName = "nvarchar(64)")]
-        private int case_form_factor { get; set; }
+        private int FormFactor { get; set; }
+
+        [Column(TypeName = "money")]
+        private double Price { get; set; }
 
         [Column(TypeName = "nvarchar(64)")]
-        private String case_dimensions { get; set; }
+        private int Stock { get; set; }
 
         [Column(TypeName = "nvarchar(64)")]
-        private double case_price { get; set; }
+        private int ImageName { get; set; }
 
-        [Column(TypeName = "nvarchar(64)")]
-        private int case_stock { get; set; }
-
-        [Column(TypeName = "nvarchar(64)")]
-        private int case_img { get; set; }
-
-        // Add field to store images
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile { get; set; }
     }
 }

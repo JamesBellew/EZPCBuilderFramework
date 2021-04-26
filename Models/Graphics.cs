@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -10,34 +12,43 @@ namespace EZPCBuilder.Models
     public class Graphics
     {
         [Key]
-        private int graphics_id { get; set; }
+        private int ID { get; set; }
 
+        [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private String graphics_name { get; set; }
+        private string Name { get; set; }
 
+        [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private String graphics_manufacturer { get; set; }
+        private string Brand { get; set; }
 
+        [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private int graphics_vram { get; set; }
+        private int VRAM { get; set; }
 
+        [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private int graphics_cores { get; set; }
+        private int BaseSpeed { get; set; }
 
+        [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private int graphic_base_speed { get; set; }
+        private int BoostSpeed { get; set; }
 
-        [Column(TypeName = "nvarchar(64)")]
-        private int graphics_boost_speed { get; set; }
+        [Required]
+        [Column(TypeName = "money")]
+        private decimal Price { get; set; }
 
+        [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private double graphics_price { get; set; }
+        private int Stock { get; set; }
 
+        [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private int graphics_stock { get; set; }
+        private string ImageName { get; set; }
 
-        [Column(TypeName = "nvarchar(64)")]
-        private int graphics_img { get; set; }
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile { get; set; }
 
 
     }
