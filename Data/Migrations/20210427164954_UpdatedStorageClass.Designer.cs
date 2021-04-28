@@ -4,14 +4,16 @@ using EZPCBuilder.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EZPCBuilder.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210427164954_UpdatedStorageClass")]
+    partial class UpdatedStorageClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,51 +135,6 @@ namespace EZPCBuilder.Data.Migrations
                     b.ToTable("Memory");
                 });
 
-            modelBuilder.Entity("EZPCBuilder.Models.PC", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CaseID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GraphicsID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MemoryID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProcessorID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StorageID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("pc_desc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("pc_name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CaseID");
-
-                    b.HasIndex("GraphicsID");
-
-                    b.HasIndex("MemoryID");
-
-                    b.HasIndex("ProcessorID");
-
-                    b.HasIndex("StorageID");
-
-                    b.ToTable("PC");
-                });
-
             modelBuilder.Entity("EZPCBuilder.Models.Processor", b =>
                 {
                     b.Property<int>("ID")
@@ -242,13 +199,11 @@ namespace EZPCBuilder.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(64)");
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Speed")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(64)");
+                    b.Property<int>("Speed")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -453,39 +408,6 @@ namespace EZPCBuilder.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("EZPCBuilder.Models.PC", b =>
-                {
-                    b.HasOne("EZPCBuilder.Models.Case", "Case")
-                        .WithMany()
-                        .HasForeignKey("CaseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EZPCBuilder.Models.Graphics", "Graphics")
-                        .WithMany()
-                        .HasForeignKey("GraphicsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EZPCBuilder.Models.Memory", "Memory")
-                        .WithMany()
-                        .HasForeignKey("MemoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EZPCBuilder.Models.Processor", "Processor")
-                        .WithMany()
-                        .HasForeignKey("ProcessorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EZPCBuilder.Models.Storage", "Storage")
-                        .WithMany()
-                        .HasForeignKey("StorageID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

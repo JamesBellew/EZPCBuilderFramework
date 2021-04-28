@@ -11,43 +11,43 @@ namespace EZPCBuilder.Models
     public class Memory
     {
         [Key]
-        private int ID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private string Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private string ModelNum { get; set; }
+        public string ModelNum { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private string Size { get; set; }
+        public string Size { get; set; }
+
+        [Required]
+        [Column(TypeName ="int")]
+        public int Speed { get; set; }
 
         [Required]
         [Column(TypeName ="nvarchar(64)")]
-        private int Speed { get; set; }
+        public string Type { get; set; }
 
         [Required]
         [Column(TypeName ="nvarchar(64)")]
-        private string Type { get; set; }
+        public string Latency { get; set; }
 
         [Required]
         [Column(TypeName ="nvarchar(64)")]
-        private string Latency { get; set; }
+        public double Price { get; set; }
 
         [Required]
-        [Column(TypeName ="nvarchar(64)")]
-        private double Price { get; set; }
+        [Column(TypeName ="int")]
+        public int Stock { get; set; }
 
-        [Required]
+        
         [Column(TypeName ="nvarchar(64)")]
-        private int Stock { get; set; }
-
-        [Required]
-        [Column(TypeName ="nvarchar(64)")]
-        private string ImageName { get; set; }
+        public string ImageName { get; set; }
 
         [NotMapped]
         public IFormFile ImageFile { get; set; }

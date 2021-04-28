@@ -1,50 +1,46 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EZPCBuilder.Models
 {
     public class Graphics
     {
         [Key]
-        private int ID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private string Name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private string Brand { get; set; }
+        public string Brand { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private int VRAM { get; set; }
+        public string VRAM { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private int BaseSpeed { get; set; }
+        public string BaseSpeed { get; set; }
 
         [Required]
         [Column(TypeName = "nvarchar(64)")]
-        private int BoostSpeed { get; set; }
+        public string BoostSpeed { get; set; }
 
         [Required]
         [Column(TypeName = "money")]
-        private decimal Price { get; set; }
+        public decimal Price { get; set; }
 
         [Required]
-        [Column(TypeName = "nvarchar(64)")]
-        private int Stock { get; set; }
+        [Column(TypeName = "int")]
+        public int Stock { get; set; }
 
-        [Required]
+        
         [Column(TypeName = "nvarchar(64)")]
-        private string ImageName { get; set; }
+        public string ImageName { get; set; }
 
         [NotMapped]
         [DisplayName("Upload File")]

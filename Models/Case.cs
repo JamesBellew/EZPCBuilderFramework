@@ -12,22 +12,22 @@ namespace EZPCBuilder.Models
     public class Case
     {
         [Key]
-        private int ID;
+        public int ID { get; set; }
 
         [Column(TypeName = "nvarchar(64)")]
-        private String Name { get; set; }
+        public string Name { get; set; }
 
         [Column(TypeName = "nvarchar(64)")]
-        private int FormFactor { get; set; }
+        public string FormFactor { get; set; }
 
         [Column(TypeName = "money")]
-        private double Price { get; set; }
+        public double Price { get; set; }
 
         [Column(TypeName = "nvarchar(64)")]
-        private int Stock { get; set; }
+        public int Stock { get; set; }
 
         [Column(TypeName = "nvarchar(64)")]
-        private int ImageName { get; set; }
+        public string ImageName { get; set; }
 
         [NotMapped]
         [DisplayName("Upload File")]

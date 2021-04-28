@@ -13,19 +13,27 @@ namespace EZPCBuilder.Models
         [Key]
         public int ID { get; set;}
 
-        [Column(TypeName = "nvarchar")]
+        [Required]
+        [Column(TypeName = "nvarchar(64)")]
         public string Name { get; set; }
 
-        [Column(TypeName = "int")]
-        public int Speed { get; set; }
+        [Required]
+        [Column(TypeName = "nvarchar(64)")]
+        public string Speed { get; set; }
 
-        [Column(TypeName ="int"), Display(Name="Size")]
+        [Required]
+        [Column(TypeName = "nvarchar(64)"), Display(Name="Size")]
         public string Size { get; set; }
 
-        [Column(TypeName = "nvarchar"), Display(Name="Connection")]
+        [Required]
+        [Column(TypeName = "nvarchar(64)"), Display(Name="Connection")]
         public string Connection { get; set; }
 
-        [Column(TypeName = "nvarchar"), Display(Name="ImageName")]
+        [Required]
+        [Column(TypeName = "money")]
+        public double Price { get; set; }
+
+        [Column(TypeName = "nvarchar(64)"), Display(Name="ImageName")]
         public string ImageName { get; set; }
 
         [NotMapped]

@@ -7,12 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20210426174847_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20210426174847_InitialCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210426175301_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20210426175301_InitialCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210426175414_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20210426175414_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Cases\" />
+    <Folder Include="wwwroot\Images\Graphics\" />
+    <Folder Include="wwwroot\Images\Memory\" />
+    <Folder Include="wwwroot\Images\Storage\" />
+    <Folder Include="wwwroot\Images\Processors\" />
   </ItemGroup>
 
 </Project>
