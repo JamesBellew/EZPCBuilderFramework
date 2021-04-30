@@ -19,5 +19,6 @@ namespace EZPCBuilder.Data
         public DbSet<EZPCBuilder.Models.Processor> Processor { get; set; }
         public DbSet<EZPCBuilder.Models.Storage> Storage { get; set; }
         public DbSet<EZPCBuilder.Models.PC> PC { get; set; }
+        public DbSet<EZPCBuilder.Models.ProjectRole> ProjectRole { get; set; }
     }
 }
