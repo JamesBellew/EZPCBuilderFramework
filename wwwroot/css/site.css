@@ -23,8 +23,12 @@ a {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
-
-
+.nav-link{
+    color:white;
+}
+.card-title{
+    color:white;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
