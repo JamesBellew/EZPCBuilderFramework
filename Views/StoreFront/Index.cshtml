@@ -1,0 +1,37 @@
+﻿@model IEnumerable<EZPCBuilder.Models.PC>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+    <div class="card">
+        <img class="card-img-top" src="~/Images/Cases/@item.Case.ImageName" width="50" height="300" asp-append-version="true" />
+        <div class="card-body">
+            <h5 class="card-title">@Html.DisplayFor(modelItem => item.pc_name)</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@Html.DisplayFor(modelItem => item.Processor.Name)</li>
+                <li class="list-group-item">@Html.DisplayFor(modelItem => item.Graphics.Name)</li>
+                <li class="list-group-item">@Html.DisplayFor(modelItem => item.Memory.Name)</li>
+                <li class="list-group-item">@Html.DisplayFor(modelItem => item.Storage.Name)</li>
+                <li class="list-group-item">@Html.DisplayFor(modelItem => item.pc_desc)</li>
+                <li class="list-group-item">
+                    <a class="btn btn-primary" asp-action="AddToCart" asp-route-id="@item.ID">Add To Cart</a>
+                    <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.ID">View Specs</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    }
+</div>
+
+
