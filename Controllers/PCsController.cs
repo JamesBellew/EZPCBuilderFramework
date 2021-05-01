@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EZPCBuilder.Data;
 using EZPCBuilder.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EZPCBuilder.Controllers
 {
@@ -49,6 +50,7 @@ namespace EZPCBuilder.Controllers
             return View(pC);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: PCs/Create
         public IActionResult Create()
         {

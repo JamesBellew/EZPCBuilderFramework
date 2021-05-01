@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - EZPCBuilder</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
 </head>
 <body>
     <header>
@@ -40,6 +41,17 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="Storage" asp-action="Index">Storage</a>
+                        </li>
+
+                        <li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Administrator"))
+                                {
+                                    <a class="nav-link " style="color:mediumpurple;" asp-area="" asp-controller="Admin" asp-action="Create">Manage Roles</a>
+                                }
+
+                            }
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="PCs" asp-action="Index">PCs</a>
