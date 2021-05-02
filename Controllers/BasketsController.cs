@@ -38,6 +38,7 @@ namespace EZPCBuilder.Controllers
 
             foreach(Basket b in basket)
             {
+
                 var pc = _context.PC
                 .Include(p => p.Case)
                 .Include(p => p.Graphics)

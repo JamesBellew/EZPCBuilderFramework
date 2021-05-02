@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EZPCBuilder.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EZPCBuilder.Controllers
 {
@@ -19,6 +20,12 @@ namespace EZPCBuilder.Controllers
         }
 
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public IActionResult PcApi()
         {
             return View();
         }

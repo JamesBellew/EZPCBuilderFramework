@@ -65,18 +65,31 @@
 
 
 
+                   
 
-
-                        <li>
+                     
                             @if (User.Identity.IsAuthenticated)
                             {
                                 if (User.IsInRole("Administrator"))
                                 {
-                                    <a class="nav-link " style="color:mediumpurple;" asp-area="" asp-controller="Admin" asp-action="Create">Manage Roles</a>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info">Administrator</button>
+                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <li> <a class="nav-link text-dark" style="color:mediumpurple;" asp-area="" asp-controller="Admin" asp-action="Create">Manage Roles</a></li>
+                                            <li> <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="PcApi">APIs</a></li>
+                                            <li> <a class="nav-link text-dark " asp-area="" asp-controller="PCS1Api" asp-action="GetPC">API- All Pcs</a></li>
+                                        </div>
+                                    </div>
+
+
+                                   
                                 }
 
                             }
-                        </li>
+                        
 
                     </ul>
                 </div>
