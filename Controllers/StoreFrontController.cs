@@ -113,23 +113,5 @@ namespace EZPCBuilder.Controllers
                 return View();
             }
         }
-
-        public IActionResult AddToBasket(int id)
-        {
-            // Getting the current users Id
-            string userId = _userManager.GetUserId(HttpContext.User);
-
-            // Create Basket Model
-            Basket basket = new Basket();
-
-            // Assign Values to Basket Items
-            basket.PCID = id;
-            basket.UserID = userId;
-
-            // Add basket to Database
-            _context.Basket.Add(basket);
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
-        }
     }
 }

@@ -19,16 +19,16 @@
         <div class="card">
             <img class="card-img-top" src="~/Images/Cases/@item.Case.ImageName" width="50" height="300" asp-append-version="true" />
             <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(modelItem => item.pc_name)</h5>
+                <h5 class="text-dark card-title">@Html.DisplayFor(modelItem => item.pc_name)</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.ID)</li>
-                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.Processor.Name)</li>
-                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.Graphics.Name)</li>
-                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.Memory.Name)</li>
-                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.Storage.Name)</li>
-                    <li class="list-group-item">@Html.DisplayFor(modelItem => item.pc_desc)</li>
+                    <li class="text-dark list-group-item"><b class="text-dark">CPU:</b> @Html.DisplayFor(modelItem => item.Processor.Name)</li>
+                    <li class="text-dark list-group-item"><b class="text-dark">GPU:</b> @Html.DisplayFor(modelItem => item.Graphics.Name)</li>
+                    <li class="text-dark list-group-item"><b class="text-dark">RAM:</b> @Html.DisplayFor(modelItem => item.Memory.Name)</li>
+                    <li class="text-dark list-group-item"><b class="text-dark">Storage:</b> @Html.DisplayFor(modelItem => item.Storage.Name)</li>
+                    <li class="text-dark list-group-item">@Html.DisplayFor(modelItem => item.pc_desc)</li>
+                    <li class="text-dark list-group-item">@Html.DisplayFor(modelItem => item.Price)</li>
                     <li class="list-group-item">
-                        <a class="btn btn-primary" asp-action="AddToBasket" asp-route-id="@item.ID">Add To Basket</a>
+                        <a class="btn btn-primary" asp-controller="Baskets" asp-action="AddToBasket" asp-route-id="@item.ID">Add To Basket</a>
                         <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.ID">View Specs</a>
                     </li>
                 </ul>

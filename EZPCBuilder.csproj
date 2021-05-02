@@ -13,6 +13,12 @@
     <Compile Remove="Data\Migrations\20210426175301_InitialCreate.Designer.cs" />
     <Compile Remove="Data\Migrations\20210426175414_InitialCreate.cs" />
     <Compile Remove="Data\Migrations\20210426175414_InitialCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502161613_PCPriceandBasketQuantityUpdate.cs" />
+    <Compile Remove="Data\Migrations\20210502161613_PCPriceandBasketQuantityUpdate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502161651_PCPriceandBasketQuantityUpdate.cs" />
+    <Compile Remove="Data\Migrations\20210502161651_PCPriceandBasketQuantityUpdate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502161807_BasketPCUpdate.cs" />
+    <Compile Remove="Data\Migrations\20210502161807_BasketPCUpdate.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

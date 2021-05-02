@@ -68,7 +68,7 @@ namespace EZPCBuilder.Controllers
         [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,pc_name,pc_desc,ProcessorID,GraphicsID,CaseID,MemoryID,StorageID")] PC pC)
+        public async Task<IActionResult> Create([Bind("ID,pc_name,pc_desc,ProcessorID,GraphicsID,CaseID,MemoryID,StorageID,Price")] PC pC)
         {
             if (ModelState.IsValid)
             {

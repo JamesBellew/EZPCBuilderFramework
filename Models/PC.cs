@@ -40,6 +40,10 @@ namespace EZPCBuilder.Models
         [ForeignKey("Storage")]
         public int StorageID { get; set; }
 
+        [Column(TypeName = "money")]
+        public decimal Price { get; set; }
+
+
         public virtual Processor Processor { get; set; }
         public virtual Graphics Graphics { get; set; }
         public virtual Case Case { get; set; }

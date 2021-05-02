@@ -1,41 +1,56 @@
-﻿@model IEnumerable<EZPCBuilder.Models.Basket>
+﻿@model IEnumerable<Basket>
 
 @{
     ViewData["Title"] = "Index";
+
+    decimal totalCost = 0;
+    int pcCount = 0;
 }
 
-<h1>Index</h1>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="card col-12 col-md-8">
+            <div class="card-header"><h5 class="text-dark">Basket</h5></div>
+            <br />
+            @foreach (var item in Model)
+            {
+                
+                <div class="card" style="width: 30rem">
+                    <img class="card-img-top" src="~/Images/Cases/@item.PC.Case.ImageName" width="50" height="300" asp-append-version="true" />
+                    <div class="card-body">
+                        <h5><b class="text-dark">@item.PC.pc_name</b></h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="text-dark list-group-item">@item.PC.Processor.Name</li>
+                        <li class="text-dark list-group-item">@item.PC.Graphics.Name</li>
+                        <li class="text-dark list-group-item">@item.PC.Memory.Name</li>
+                        <li class="text-dark list-group-item">@item.PC.Storage.Name</li>
+                        <li class="text-dark list-group-item">@item.PC.Case.Name</li>
+                    </ul>
+                    <div class="card-body">
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Remove from Basket</a>
+                    </div>
+                </div>
+                    totalCost += @item.PC.Price;
+                pcCount++;
+        <br />
+            }
+        </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PC)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PC.pc_desc)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <div class="card col-5 col-md-4">
+            <div class="card-header">Summary</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="text-dark list-group-item">Items in Basket: @pcCount</li>
+                    <li class="text-dark list-group-item">Subtotal: @totalCost</li>
+                    <li class="text-dark list-group-item">
+                        <a class="btn btn-primary" asp-action="Checkout">Go to Checkout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -16,6 +16,9 @@ namespace EZPCBuilder.Models
         [ForeignKey("PC")]
         public int PCID { get; set; }
 
+        [Column(TypeName ="int")]
+        public int Quantity { get; set; }
+
         public virtual IdentityUser User { get; set; }
 
         public virtual PC PC { get; set; }

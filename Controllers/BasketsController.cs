@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using EZPCBuilder.Data;
 using EZPCBuilder.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EZPCBuilder.Controllers
 {
+    // [Authorize(Roles = "User")]
+    [Authorize(Roles = "Administrator")]
     public class BasketsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,8 +28,30 @@ namespace EZPCBuilder.Controllers
         // GET: Baskets
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Basket.Include(b => b.PC).Include(b => b.User);
-            return View(await applicationDbContext.ToListAsync());
+            List<PC> basketItems = new List<PC>();
+            string user = _userManager.GetUserId(HttpContext.User);
+
+            var basket = _context.Basket
+                .Include(b => b.PC)
+                .Include(b => b.User)
+                .AsEnumerable().Where(b => b.UserID == user);
+
+            foreach(Basket b in basket)
+            {
+                var pc = _context.PC
+                .Include(p => p.Case)
+                .Include(p => p.Graphics)
+                .Include(p => p.Memory)
+                .Include(p => p.Processor)
+                .Include(p => p.Storage)
+                .FirstOrDefaultAsync(m => m.ID == b.PCID);
+                basketItems.Add(await pc);
+
+                PC pC = await pc;
+                b.PC = pC;
+            }
+
+            return View(basket);
         }
 
         // GET: Baskets/Details/5
@@ -166,25 +191,22 @@ namespace EZPCBuilder.Controllers
             return _context.Basket.Any(e => e.ID == id);
         }
 
-        [ActionName("AddToBasket")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddToBasket(int pcid)
+        public IActionResult AddToBasket(int id)
         {
             // Getting the current users Id
             string userId = _userManager.GetUserId(HttpContext.User);
-            Console.Out.WriteLine("Here");
 
             // Create Basket Model
             Basket basket = new Basket();
-            
+
             // Assign Values to Basket Items
-            basket.PCID = pcid;
+            basket.PCID = id;
             basket.UserID = userId;
 
             // Add basket to Database
-                _context.Add(basket);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            _context.Basket.Add(basket);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
