@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EZPCBuilder.Data;
 using EZPCBuilder.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EZPCBuilder.Controllers
 {
@@ -16,20 +18,23 @@ namespace EZPCBuilder.Controllers
       
         //role manager class
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly ApplicationDbContext _context;
 
-        public AdminController(RoleManager<IdentityRole> roleManager)
+
+        public AdminController(RoleManager<IdentityRole> roleManager, ApplicationDbContext context )
         {
+            _context = context;
             this.roleManager = roleManager;
+           
         }
 
-        // GET: AdminController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.ProjectRole.ToListAsync());
         }
 
 
-  
+
 
 
         // GET: AdminController/Details/5
