@@ -65,6 +65,7 @@ namespace EZPCBuilder.Controllers
         // POST: PCs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,pc_name,pc_desc,ProcessorID,GraphicsID,CaseID,MemoryID,StorageID")] PC pC)
@@ -82,7 +83,7 @@ namespace EZPCBuilder.Controllers
             ViewData["StorageID"] = new SelectList(_context.Storage, "ID", "Name", pC.StorageID);
             return View(pC);
         }
-
+        [Authorize(Roles = "Administrator")]
         // GET: PCs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -104,6 +105,7 @@ namespace EZPCBuilder.Controllers
             return View(pC);
         }
 
+        [Authorize(Roles = "Administrator")]
         // POST: PCs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -144,6 +146,7 @@ namespace EZPCBuilder.Controllers
             return View(pC);
         }
 
+        [Authorize(Roles = "Administrator")]
         // GET: PCs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -167,6 +170,7 @@ namespace EZPCBuilder.Controllers
             return View(pC);
         }
 
+        [Authorize(Roles = "Administrator")]
         // POST: PCs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

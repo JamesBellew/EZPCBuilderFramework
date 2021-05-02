@@ -28,20 +28,41 @@
                             <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Cases" asp-action="Index">Cases</a>
+                            <a class="nav-link " asp-area="" asp-controller="PCs" asp-action="Index">PCs</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Graphics" asp-action="Index">Graphics</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Memories" asp-action="Index">Memories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Processors" asp-action="Index">Processors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Storage" asp-action="Index">Storage</a>
-                        </li>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info" style="background-color:mediumpurple;">Hardware Parts</button>
+                            <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"  style="background-color:mediumpurple;"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark  " asp-area="" asp-controller="Cases" asp-action="Index">Cases</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark " asp-area="" asp-controller="Graphics" asp-action="Index">Graphics</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link text-dark " asp-area="" asp-controller="Memories" asp-action="Index">Memories</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link  text-dark" asp-area="" asp-controller="Processors" asp-action="Index">Processors</a>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <li class="nav-item">
+                                    <a class="nav-link  text-dark" asp-area="" asp-controller="PCs" asp-action="Index">Pre Builds</a>
+                                </li>
+                            </div>
+                        </div>
+
+                        <hr />
+
+
+
+
+
+
 
                         <li>
                             @if (User.Identity.IsAuthenticated)
@@ -53,9 +74,7 @@
 
                             }
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="PCs" asp-action="Index">PCs</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
