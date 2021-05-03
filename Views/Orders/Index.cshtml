@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+
+@model List<Order>;
+
+<div class="container">
+    @foreach (Order o in Model)
+    {
+        @foreach (PC item in o.ItemsOrdered)
+        {
+            <div class="card" style="width: 30rem">
+                <img class="card-img-top" src="~/Images/Cases/@item.Case.ImageName" width="50" height="300" asp-append-version="true" />
+                <div class="card-body">
+                    <h5><b class="text-dark">@item.pc_name</b></h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="text-dark list-group-item">Order ID: @o.ID</li>
+                        <li class="text-dark list-group-item">Order Total: @o.TotalCost</li>
+                        <li class="text-dark list-group-item">Order Date: @o.OrderDate.Date</li>
+                        <a asp-action="Details" asp-route-id="@o.ID" class="btn btn-primary">View Details</a>
+                    </ul>
+                </div>
+            </div>
+        }
+    }
+</div>

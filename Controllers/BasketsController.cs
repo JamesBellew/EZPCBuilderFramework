@@ -200,14 +200,31 @@ namespace EZPCBuilder.Controllers
             // Create Basket Model
             Basket basket = new Basket();
 
-            // Assign Values to Basket Items
-            basket.PCID = id;
-            basket.UserID = userId;
+            var checkIfExists = _context.Basket.FirstOrDefault(m => m.PCID == id && m.UserID == userId );
+            if(checkIfExists == null)
+            {
+                // Assign Values to Basket Items
+                basket.PCID = id;
+                basket.UserID = userId;
+                basket.Quantity = 1;
 
-            // Add basket to Database
-            _context.Basket.Add(basket);
+                // Add basket to Database
+                _context.Basket.Add(basket);
+            } else
+            {
+                // Add one to the quantity in the Basket
+                checkIfExists.Quantity += 1;
+                _context.Entry(checkIfExists).State = EntityState.Modified;
+            }
+            
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Checkout()
+        {
+            
+            return View("Summary");
         }
     }
 }

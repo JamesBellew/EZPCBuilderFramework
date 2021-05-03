@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Order
+
+<div class="container">
+    @foreach (PC item in Model.ItemsOrdered)
+    {
+    <div class="card" style="width: 60rem">
+        
+        <div class="card-body">
+            <img class="card-img-top" src="~/Images/Cases/@item.Case.ImageName" style="width: 20rem; " asp-append-version="true" />
+            <br />
+            <h3><b class="text-dark">@item.pc_name</b></h3>
+            <h5><b class="text-dark">Order Info</b></h5>
+            <ul class="list-group list-group-flush">
+                <li class="text-dark list-group-item">Order ID: @Model.ID</li>
+                <li class="text-dark list-group-item">Order Total: @Model.TotalCost</li>
+                <li class="text-dark list-group-item">Order Date: @Model.OrderDate.Date</li>
+            </ul>
+        </div>
+
+        <div class="card-body">
+            <h5><b class="text-dark">Specs</b></h5>
+            <ul class="list-group list-group-flush">
+                <li class="text-dark list-group-item">CPU: @item.Processor.Name</li>
+                <li class="text-dark list-group-item">GPU: @item.Graphics.Name</li>
+                <li class="text-dark list-group-item">RAM: @item.Memory.Name</li>
+                <li class="text-dark list-group-item">Case: @item.Case.Name</li>
+                <li class="text-dark list-group-item">Storage: @item.Storage.Name</li>
+                <li class="text-dark list-group-item">Quantity: @item.Quantity</li>
+                <li class="text-dark list-group-item">Price: @item.Price</li>
+            </ul>
+        </div>
+        <a asp-action="Index" class="btn btn-primary">Go Back</a>
+    </div>
+    }
+</div>

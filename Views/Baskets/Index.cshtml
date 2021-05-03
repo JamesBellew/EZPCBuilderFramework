@@ -26,13 +26,14 @@
                         <li class="text-dark list-group-item">@item.PC.Memory.Name</li>
                         <li class="text-dark list-group-item">@item.PC.Storage.Name</li>
                         <li class="text-dark list-group-item">@item.PC.Case.Name</li>
+                        <li class="text-dark list-group-item">Quantity: @item.Quantity</li>
                     </ul>
                     <div class="card-body">
                         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID">Remove from Basket</a>
                     </div>
                 </div>
                     totalCost += @item.PC.Price;
-                pcCount++;
+                pcCount += item.Quantity;
         <br />
             }
         </div>
@@ -44,7 +45,7 @@
                     <li class="text-dark list-group-item">Items in Basket: @pcCount</li>
                     <li class="text-dark list-group-item">Subtotal: @totalCost</li>
                     <li class="text-dark list-group-item">
-                        <a class="btn btn-primary" asp-action="Checkout">Go to Checkout</a>
+                        <a class="btn btn-primary" asp-controller="Orders" asp-action="Checkout">Go to Checkout</a>
                     </li>
                 </ul>
             </div>

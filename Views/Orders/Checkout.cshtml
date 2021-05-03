@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    decimal totalCost = 0;
+    int quantity = 0;
+}
+
+@model Order
+<style>
+    .summary{
+       color: #000000;
+    }
+</style>
+<div class="summary">
+    <div class="card">
+        <div class="text-dark card-body">
+            <h3 class="text-dark">Order summary</h3>
+            <h5 class="text-dark">Items Ordered</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-dark">Name</th>
+                        <th scope="col" class="text-dark">Quantity</th>
+                        <th scope="col" class="text-dark">Price Per Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PC pc in Model.ItemsOrdered)
+                    {
+                    <tr scope="row">
+                        <td class="text-dark">@pc.pc_name</td>
+                        <td class="text-dark">@pc.Quantity</td>
+                        <td class="text-dark">@pc.Price</td>
+                    </tr>
+                        quantity += pc.Quantity;
+                        totalCost += pc.Quantity * pc.Price;
+                    }
+                <tr scope="row">
+                    <td>Total: </td>
+                    <td>@quantity</td>
+                    <td>@totalCost</td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary" asp-action="Payment">Continue To Payment</a>
+            <a class="btn btn-danger" asp-controller="Baskets" asp-action="Index">Go Back</a>
+        </div>
+    </div>
+</div>
+

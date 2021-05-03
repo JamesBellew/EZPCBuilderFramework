@@ -43,6 +43,9 @@ namespace EZPCBuilder.Models
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
 
+        [NotMapped]
+        public int Quantity { get; set; }
+
 
         public virtual Processor Processor { get; set; }
         public virtual Graphics Graphics { get; set; }
