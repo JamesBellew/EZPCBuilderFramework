@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container">
+    <div class="card">
+        <div class="card-header"><h2 style="color:black;">Enter Card Details Below</h2></div>
+        <div class="card-body">
+            <form action="controller.jsp" method="post">
+                <!-- Name on Card -->
+                <div class="form-group">
+                    <label for="name_on_card" class="text-dark form-label">Name on Card</label>
+                    <input type="text" class="form-control" name="name_on_card" required />
+                </div>
+                <!-- Card Number -->
+                <div class="form-group">
+                    <label for="card_number" class="text-dark form-label">Card Number</label>
+                    <input type="text" class="form-control" name="card_number" required />
+                </div>
+                <!-- Expiry Date  -->
+                <div class="form-group">
+                    <label for="expiry_date" class="text-dark form-label">Expiry Date</label>
+                    <input type="month" min="<% LocalDateTime.now();%>" class="form-control" name="expiry_date" required />
+                </div>
+                <!-- CVC -->
+                <div class="form-group">
+                    <label for="cvc" class="text-dark form-label">CVC</label>
+                    <input type="text" class="form-control" name="cvc" required />
+                </div>
+                <!-- Submit -->
+                <a asp-action="Create" class="btn btn-primary">Proceed With Payment</a>
+                <a asp-action="Checkout" class="btn btn-danger">Go Back</a>
+            </form>
+        </div>
+    </div>
+</div>
