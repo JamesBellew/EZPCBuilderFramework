@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace EZPCBuilder.Controllers
 {
     // [Authorize(Roles = "User")]
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "User")]
     public class BasketsController : Controller
     {
         private readonly ApplicationDbContext _context;

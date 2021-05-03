@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="~/css/site.css" />
 
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm "
+        <nav class="navbar navbar-expand-md navbar-toggleable-md "
              style="background-color:transparent;">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><b>EZPCBuilder</b></a>
@@ -21,16 +22,6 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="StoreFront" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="PCs" asp-action="Index">PCs</a>
-                        </li>
-
                         <div class="btn-group">
                             <button type="button" class="btn btn-info" style="background-color:mediumpurple;">Hardware Parts</button>
                             <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" style="background-color:mediumpurple;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,8 +47,17 @@
                             </div>
                         </div>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Baskets" asp-action="Index">View Basket</a>
+                            <a class="nav-link" asp-area="" asp-controller="StoreFront" asp-action="Index">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="PCs" asp-action="Index">PCs</a>
+                        </li>
+
+
+
 
                         <hr />
 
@@ -65,31 +65,33 @@
 
 
 
-                   
 
-                     
-                            @if (User.Identity.IsAuthenticated)
+
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Administrator"))
                             {
-                                if (User.IsInRole("Administrator"))
-                                {
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-info">Administrator</button>
-                                        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <li> <a class="nav-link text-dark" style="color:mediumpurple;" asp-area="" asp-controller="Admin" asp-action="Create">Manage Roles</a></li>
-                                            <li> <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="PcApi">APIs</a></li>
-                                            <li> <a class="nav-link text-dark " asp-area="" asp-controller="PCS1Api" asp-action="GetPC">API- All Pcs</a></li>
-                                        </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info">Administrator</button>
+                                    <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <li> <a class="nav-link text-dark" style="color:mediumpurple;" asp-area="" asp-controller="Admin" asp-action="Create">Manage Roles</a></li>
+                                        <li> <a class="nav-link text-dark " asp-area="" asp-controller="Home" asp-action="PcApi">APIs</a></li>
+                                        <li> <a class="nav-link text-dark " asp-area="" asp-controller="PCS1Api" asp-action="GetPC">API- All Pcs</a></li>
                                     </div>
+                                </div>
 
 
-                                   
-                                }
 
                             }
-                        
+
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Baskets" asp-action="Index"><i class="fas fa-shopping-basket"></i></a>
+                        </li>
 
                     </ul>
                 </div>
@@ -113,3 +115,5 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+        data-auto-a11y="true"></script>

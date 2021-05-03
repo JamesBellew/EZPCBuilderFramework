@@ -4,62 +4,143 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
+<style>
+    b{
+        color:mediumpurple;
+    }
+    body{
+        background:#071F35;
+    }
+   
+    * {
+        background-color: #071F35;
+    }
 
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FormFactor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Stock)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <img src="~/Images/Cases/@item.ImageName" width="200" height="200" asp-append-version="true" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FormFactor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    span {
+        font-size: 15px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #0062cc;
+      
+    }
+
+    .box {
+        padding: 60px 0px;
+    }
+
+    .box-part {
+        
+        border-radius: 0;
+        padding: 60px 10px;
+        margin: 30px 0px;
+    }
+
+    .text {
+        margin: 20px 0px;
+    }
+    h1{
+        text-align:center;
+    }
+    .btn-info{
+        border:none;
+    }
+ 
+</style>
+
+
+
+
+
+
+
+
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <body style="background-color: #071F35;">
+        <div class="box" style="background-color: #071F35;">
+            <div class="container" style="background-color: #071F35;">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Administrator"))
+                    {
+                        <p>
+                            <a asp-action="Create" class="btn btn-success">Create New</a>
+                        </p>
+                    }
+                }
+                        <h1>List Of Cases</h1>
+
+                        <div class="row" style="background-color: #071F35;">
+                            @foreach (var item in Model)
+                            {
+
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                                    <div class="box-part text-center">
+
+                                        <img src="~/Images/Cases/@item.ImageName" width="200" height="200" asp-append-version="true" />
+
+                                        <div class="title">
+                                            <h4>   <b> @Html.DisplayFor(modelItem => item.Name)</b></h4>
+                                        </div>
+
+                                        <div class="text">
+                                            <p>
+                                                @Html.DisplayFor(modelItem => item.FormFactor)
+                                            </p>
+                                            <p>
+                                                <b>$  @Html.DisplayFor(modelItem => item.Price)</b>
+                                            </p>
+                                            <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.ID">View Specs</a>
+                                        </div>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            if (User.IsInRole("Administrator"))
+                                            {
+                                                <hr />
+                                                <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.ID">Edit</a>
+
+                                                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ID">Delete</a>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+                    </div>
+        </div>
+
+
+
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

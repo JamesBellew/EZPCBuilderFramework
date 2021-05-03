@@ -55,34 +55,34 @@
     {
 
 
-        <div class="card" style="background: rgba(0, 209, 255, 0.01); backdrop-filter: blur(10px);">
-            <img style="height:30vh; width:50%;left:5%;position:relative; " src="https://upload.wikimedia.org/wikipedia/commons/f/f5/Avalanche_Hardline_Liquid_Cooled_Gaming_PC.png" class="card-img-top" alt="...">
-            <div class="card-body" id="pcs">
-                <h5 class="card-title "><u> @Html.DisplayFor(modelItem => item.pc_name) </u></h5>
-                <p class="card-text "><b>Processor</b> :   @item.Processor.Name</p>
-                <p class="card-text "><b>Graphics</b> :   @item.Graphics.Name</p>
-                <p class="card-text "><b>Storage</b> :    @item.Storage.Name</p>
-                <p class="card-text "><b>Memory</b> :    @item.Memory.Name</p>
-                <p class="card-text "><b>Case</b> :   @item.Case.Name</p>
-                <p class="card-text "><b>  $@item.Price </b> </p>
-                <a class="btn btn-primary" id="to_cart" asp-controller="Baskets" asp-action="AddToBasket" asp-route-id="@item.ID">Add To Basket</a>
+<div class="card" style="background: rgba(0, 209, 255, 0.01); backdrop-filter: blur(10px);">
+    <img src="~/Images/Cases/@item.Case.ImageName" width="200" height="200" asp-append-version="true" />
+    <div class="card-body" id="pcs">
+        <h5 class="card-title "><u> @Html.DisplayFor(modelItem => item.pc_name) </u></h5>
+        <p class="card-text "><b>Processor</b> :   @item.Processor.Name</p>
+        <p class="card-text "><b>Graphics</b> :   @item.Graphics.Name</p>
+        <p class="card-text "><b>Storage</b> :    @item.Storage.Name</p>
+        <p class="card-text "><b>Memory</b> :    @item.Memory.Name</p>
+        <p class="card-text "><b>Case</b> :   @item.Case.Name</p>
+        <p class="card-text "><b>  $@item.Price </b> </p>
+        <a class="btn btn-primary" id="to_cart" asp-controller="Baskets" asp-action="AddToBasket" asp-route-id="@item.ID">Add To Basket</a>
 
+        <br />
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Administrator"))
+            {
                 <br />
+                <hr />
 
-                @if (User.Identity.IsAuthenticated)
-                {
-                    if (User.IsInRole("Administrator"))
-                    {
-                        <br />
-                        <hr />
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.ID">Edit</a>
+                <a asp-action="Details" class="btn btn-info" asp-route-id="@item.ID">Details</a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ID">Delete</a>
+            }
+        }
 
-                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.ID">Edit</a>
-                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.ID">Details</a>
-                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ID">Delete</a>
-                    }
-                }
-
-            </div>
+    </div>
 
 </div>
 
