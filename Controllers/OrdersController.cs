@@ -88,10 +88,15 @@ namespace EZPCBuilder.Controllers
                 _orderCollection.InsertOne(order);
 
                 // Delete users basket after creating the order
-                _basketService.DeleteBasket(basket);
+                /* _basketService.DeleteBasket(basket); */
+                foreach (Basket b in basket)
+                {
+                    _context.Basket.Remove(b);
+                }
+                _context.SaveChanges();
 
                 // Redirect to show all orders
-               return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
             } catch
             {
                return RedirectToAction(nameof(Index));

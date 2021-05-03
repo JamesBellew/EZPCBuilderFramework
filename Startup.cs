@@ -69,7 +69,7 @@ namespace EZPCBuilder
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=StoreFront}/{action=Index}/{id?}");
+                    pattern: "{controller=PCs}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
