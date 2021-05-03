@@ -8,6 +8,7 @@
 @model List<Order>;
 
 <div class="container">
+    <h1>Orders</h1>
     @foreach (Order o in Model)
     {
         @foreach (PC item in o.ItemsOrdered)
