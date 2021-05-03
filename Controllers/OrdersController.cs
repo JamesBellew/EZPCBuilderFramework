@@ -53,10 +53,36 @@ namespace EZPCBuilder.Controllers
         {
             try
             {
+                decimal orderTotal = 0;
                 List<PC> basketItems = new List<PC>();
                 string user = _userManager.GetUserId(HttpContext.User);
-                var basket = _basketService.GetBasket(user);
-                Order order = OrderService.CreateOrder(basket, user);
+
+                var basket = _context.Basket
+                    .Include(b => b.PC)
+                    .Include(b => b.User)
+                    .AsEnumerable().Where(b => b.UserID == user);
+
+                foreach (Basket b in basket)
+                {
+                    var pc = _context.PC
+                    .Include(p => p.Case)
+                    .Include(p => p.Graphics)
+                    .Include(p => p.Memory)
+                    .Include(p => p.Processor)
+                    .Include(p => p.Storage)
+                    .FirstOrDefaultAsync(m => m.ID == b.PCID);
+                    PC pC = await pc;
+                    pC.Quantity = b.Quantity;
+                    basketItems.Add(pC);
+
+                    orderTotal += pC.Price;
+                }
+
+                Order order = new Order();
+                order.ItemsOrdered = basketItems;
+                order.UserID = user;
+                order.OrderDate = DateTime.Now;
+                order.TotalCost = (double)orderTotal;
 
                 // Insert created order
                 _orderCollection.InsertOne(order);
