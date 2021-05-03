@@ -1,5 +1,6 @@
 ﻿using EZPCBuilder.Data;
 using EZPCBuilder.Models;
+using EZPCBuilder.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,8 @@ namespace EZPCBuilder.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IMongoCollection<Order> _orderCollection;
         private readonly UserManager<IdentityUser> _userManager;
+        private OrderService _orderService;
+        private BasketService _basketService;
 
         public OrdersController(IMongoClient client, UserManager<IdentityUser> userManager, ApplicationDbContext context)
         {
@@ -50,46 +53,18 @@ namespace EZPCBuilder.Controllers
         {
             try
             {
-                decimal orderTotal = 0;
                 List<PC> basketItems = new List<PC>();
                 string user = _userManager.GetUserId(HttpContext.User);
+                var basket = _basketService.GetBasket(user);
+                Order order = OrderService.CreateOrder(basket, user);
 
-                var basket = _context.Basket
-                    .Include(b => b.PC)
-                    .Include(b => b.User)
-                    .AsEnumerable().Where(b => b.UserID == user);
-
-                foreach (Basket b in basket)
-                {
-                    var pc = _context.PC
-                    .Include(p => p.Case)
-                    .Include(p => p.Graphics)
-                    .Include(p => p.Memory)
-                    .Include(p => p.Processor)
-                    .Include(p => p.Storage)
-                    .FirstOrDefaultAsync(m => m.ID == b.PCID);
-                    PC pC = await pc;
-                    pC.Quantity = b.Quantity;
-                    basketItems.Add(pC);
-
-                    orderTotal += pC.Price * pC.Quantity;
-                }
-
-                Order order = new Order();
-                order.ItemsOrdered = basketItems;
-                order.UserID = user;
-                order.OrderDate = DateTime.Now;
-                order.TotalCost = (double)orderTotal;
-
+                // Insert created order
                 _orderCollection.InsertOne(order);
 
-                // Emptying Basket
-                foreach (Basket b in basket)
-                {
-                    _context.Basket.Remove(b);
-                }
-                await _context.SaveChangesAsync();
+                // Delete users basket after creating the order
+                _basketService.DeleteBasket(basket);
 
+                // Redirect to show all orders
                return RedirectToAction(nameof(Index));
             } catch
             {
